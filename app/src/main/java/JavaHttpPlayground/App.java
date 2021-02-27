@@ -3,12 +3,25 @@
  */
 package JavaHttpPlayground;
 
+import java.nio.charset.StandardCharsets;
+
+import org.apache.commons.io.IOUtils;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClientBuilder;
+
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
+    public String getGreeting() throws Exception {
+        HttpClient client = HttpClientBuilder.create().build();
+        var getRequest = new HttpGet("https://jsonplaceholder.typicode.com/posts");
+
+        HttpResponse response = client.execute(getRequest);
+        String content = IOUtils.toString(response.getEntity().getContent(), StandardCharsets.UTF_8);
+        return content;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         System.out.println(new App().getGreeting());
     }
 }
