@@ -16,12 +16,18 @@ repositories {
     jcenter()
 }
 
+def jackson_version = '2.12.1'
+
 dependencies {
     // Use JUnit test framework.
     testImplementation 'junit:junit:4.13'
 
     implementation group: 'commons-io', name: 'commons-io', version: '2.8.0'
     implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5'
+
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: jackson_version
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: jackson_version
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jackson_version
 }
 
 application {
